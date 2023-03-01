@@ -13,7 +13,6 @@
 void print_rev(char *s)
 {
 	int index_one, index_two, length;
-	char temp;
 
 	length = 0;
 
@@ -21,23 +20,9 @@ void print_rev(char *s)
 	{
 		length++;
 	}
-
-	if (length % 2 != 0)
+	for (index_two = (length - 1); index_two >= 0; index_two--)
 	{
-		for (index_two = (length - 1); index_two > (length / 2); index_two--)
-		{
-			temp = *(s + index_two);
-			*(s + index_two) = *(s + ((length - 1) - index_two));
-			*(s + ((length - 1) - index_two)) = temp;
-		}
+		_putchar(*(s + index_two));
 	}
-	else
-	{
-		for (index_two = (length - 1); index_two >= (length / 2); index_two--)
-		{
-			temp = *(s + index_two);
-			*(s + index_two) = *(s + ((length - 1) - index_two));
-			*(s + ((length - 1) - index_two)) = temp;
-		}
-	}
+	_putchar('\n');
 }
