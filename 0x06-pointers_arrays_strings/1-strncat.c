@@ -1,7 +1,6 @@
 #include "main.h"
 /**
- * _strncat - concatenate two strings
- * using at most n bytes 
+ * _strncat - concatenate two strings using at most n bytes
  *
  * @dest: String to place at the start
  * @src: String to place at the end
