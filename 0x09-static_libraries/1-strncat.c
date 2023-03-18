@@ -1,55 +1,30 @@
 #include "main.h"
 
 /**
- * _strncat - function that concatenates two strings
- *
- * Description: function that concatenates two strings
- *
- * @dest: String to place at the start
- * @src: String to place at the end
- * @n: Number of bytes to concatenate
- *
- * Return: Pointer to concatenated string
+ * *_strncat - Entry point
+ * Description: Concatenates two strings
+ * @dest: char
+ * @src: char
+ * @n: Integer
+ * Return: 0
  */
 
 char *_strncat(char *dest, char *src, int n)
 {
-	int index_src, index_dest, length_src, length_dest, src_end, dest_end;
+	char *p = dest;
 
-	src_end = dest_end = length_src = length_dest = 0;
-	index_src = index_dest = 0;
-	while (1)
+	/* Find the end of dest */
+	while (*p != '\0')
 	{
-		if (src_end == 1 && dest_end == 1)
-			break;
-
-		if (*(src + index_src) == '\0')
-		{
-			src_end = 1;
-		}
-		else
-		{
-			length_src++;
-			index_src++;
-		}
-
-		if (*(dest + index_dest) == '\0')
-		{
-			dest_end = 1;
-		}
-		else
-		{
-			length_dest++;
-			index_dest++;
-		}
+		p++;
 	}
-
-	for (index_src = 0; index_src < n; index_src++)
+	/* Append up to n bytes from src */
+	while (*src != '\0' && n-- > 0)
 	{
-		if (index_src < length_src)
-			*(dest + (index_dest + index_src)) = *(src + index_src);
-
+		*p++ = *src++;
 	}
-
+	/* Add a null terminator to dest */
+	*p = '\0';
 	return (dest);
 }
+

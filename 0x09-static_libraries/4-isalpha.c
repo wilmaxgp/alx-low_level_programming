@@ -1,39 +1,20 @@
 #include "main.h"
 
 /**
- * _strspn - function that gets the length of a prefix substring
+ * _isalpha - checks for alphabetic character
+ * @c: character to be checked
  *
- * Description: function that gets the length of a prefix substring
- *
- * @s: string to search
- * @accept: characters to look out for
- *
- * Return: the ocurences of the charecters in the accept string
+ * Return: 1 if c is a letter (lowercase or uppercase), 0 otherwise
  */
 
-unsigned int _strspn(char *s, char *accept)
+int _isalpha(int c)
 {
-	unsigned int s_index, accept_index, number_of_matches, has_match;
-
-	number_of_matches = 0;
-
-	for (s_index = 0; s[s_index] != '\0'; s_index++)
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
 	{
-		has_match = 0;
-		for (accept_index = 0; accept[accept_index] != '\0';
-				accept_index++)
-		{
-			if (s[s_index] == accept[accept_index])
-			{
-				number_of_matches++;
-				has_match = 1;
-				break;
-			}
-		}
-
-		if (!has_match)
-			return (number_of_matches);
+		return (1);
 	}
-
-	return (number_of_matches);
+	else
+	{
+		return (0);
+	}
 }
