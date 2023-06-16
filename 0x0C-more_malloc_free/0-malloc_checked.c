@@ -9,7 +9,7 @@
  * @b: bytes size
  * @ptr: pointer
  * Description: function that allocates memory using malloc.
- * Return:ptr
+ * Return: pointer to the allocated memory
  */
 
 void *malloc_checked(unsigned int b)
