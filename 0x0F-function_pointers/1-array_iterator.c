@@ -2,8 +2,8 @@
 #include "function_pointers.h"
 
 /**
- * array_itrator - executes a function given as a parameter on each element of an array
- * Description: function that executes a function given as a parameter on each element of an array.
+ * array_itrator - executes function on each element of the array
+ * Description: executes function on each element of the array
  * @array: pointer to the start of the array
  * @size: size of the array
  * @action: function pointer
