@@ -4,6 +4,7 @@
 
 /**
  * print_name - function that prints a name
+ * Description: function that prints a name
  * @name: name of the person
  * @f: function pointer
  *
