@@ -2,9 +2,10 @@
 
 /**
  * print_all - prints strings, followed by a new line
- * Description: a function that prints strings, followed by a new linw
+ * Description: A function that prints strings, followed by a new line.
  * @separator: string to be printed between the strings
  * @n: number of strings passed to the function
+ * @'...': number of variable arguments
  * 
  * Return: void
  */
