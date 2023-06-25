@@ -5,35 +5,33 @@
  *
  * @argc: The number of arguments passed to the program
  * @argv: An array of pointers to the arguments
+ * @num_bytes: specifies the number of bytes of the 
+ * main function's opcodes to be printed
  */
-void print_opcodes(int num_bytes)
-{
-	unsigned char *ptr = (unsigned char *)print_opcodes;
-	int i;
-	for (i = 0; i < num_bytes; i++)
-	{
-		printf("%02x ", *(ptr + i));
-	}
-	printf("\n");
-}
-
-
 int main(int argc, char *argv[])
 {
+	int num_bytes, i;
+	char *address;
+
 	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
 
-	int num_bytes = atoi(argv[1]);
+	num_bytes = atoi(argv[1]);
+
 	if (num_bytes < 0)
 	{
 		printf("Error\n");
 		return (2);
 	}
 
-	print_opcodes(num_bytes);
+	address = (char *)main;
 
+	for (i = 0; i < num_bytes; i++)
+	{
+		printf("%02hhx%c", address[i], i < num_bytes - 1 ? ' ' : '\n');
+	}
 	return (0);
 }
