@@ -2,7 +2,7 @@
 
 /**
  * op_add - function adds two integer
- * 
+ *
  * @a: 1st integer
  * @b: 2nd integer
  * Return: op_add
