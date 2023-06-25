@@ -5,6 +5,7 @@
  * 
  * @a: 1st integer
  * @b: 2nd integer
+ * Return: op_add
  */
 int op_add(int a, int b)
 {
@@ -17,6 +18,7 @@ int op_add(int a, int b)
  *
  * @a: 1st integer
  * @b: 2nd integer
+ * Return: op_sub
  */
 int op_sub(int a, int b)
 {
@@ -29,6 +31,7 @@ int op_sub(int a, int b)
  *
  * @a: 1st integer
  * @b: 2nd integer
+ * Return: op_mul
  */
 int op_mul(int a, int b)
 {
@@ -40,6 +43,7 @@ int op_mul(int a, int b)
  *
  * @a: 1st integer
  * @b: 2nd integer
+ * Return: op_div
  */
 int op_div(int a, int b)
 {
@@ -51,7 +55,8 @@ int op_div(int a, int b)
  * op_mod - function the returns the remainder of a division
  *
  * @a: 1st integer
- * b@: 2nd integer
+ * @b: 2nd integer
+ * Return: op_mod
  */
 int op_mod(int a, int b)
 {
