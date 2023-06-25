@@ -8,7 +8,7 @@
  * main function's opcodes to be printed
  * Return: main
  */
-int main (int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	int num_bytes, i;
 	char *address;
