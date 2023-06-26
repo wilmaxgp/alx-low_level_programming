@@ -7,7 +7,7 @@
  * @age: age
  * @owner: owner
  *
- * Return : new_dog
+ * Return: new_dog
  */
 dog_t *new_dog(char *name, float age, char *owner)
 {
@@ -17,8 +17,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 	if (new_dog == NULL)
 	{
 		return (NULL);
-	}
-	
+	}	
 
 
 	new_dog->name = malloc(strlen(name) + 1);
