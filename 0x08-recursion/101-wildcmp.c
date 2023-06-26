@@ -1,5 +1,14 @@
 #include "main.h"
 
+/**
+ * wildcmp - function is a recursive function that compares two strings
+ * Description: function is a recursive function that compares two strings
+ * @s1: string
+ * @s2: string
+ *
+ * Return: 0
+ */
+
 int wildcmp(char *s1, char *s2)
 {
 	if (*s1 == '\0' && *s2 == '\0')
