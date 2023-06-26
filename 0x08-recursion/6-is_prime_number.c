@@ -16,7 +16,7 @@ int is_prime_number(int n)
 		return (1);
 	if (n % 2 == 0)
 		return (0);
-	
+
 	return (is_prime_check(n, 3));
 }
 
@@ -33,7 +33,7 @@ int is_prime_check(int n, int divisor)
 		return (0);
 	if (divisor * divisor > n)
 		return (1);
-	
+
 	return (is_prime_check(n, divisor + 2));
 }
 
