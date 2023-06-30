@@ -9,9 +9,9 @@
  *
  * Return: void
  */
-char* _strdup(char* str)
+char *_strdup(char *str)
 {
-	char* duplicate;
+	char *duplicate;
 	size_t length;
 
 	if (str == NULL)
@@ -19,12 +19,12 @@ char* _strdup(char* str)
 
 	length = strlen(str) + 1;
 
-	duplicate = (char*)malloc(length * sizeof(char));
+	duplicate = (char*)malloc(length *sizeof(char));
 
 	if (duplicate == NULL)
-		return NULL;
+		return (NULL);
 
 	strcpy(duplicate, str);
 
-	return duplicate;
+	return (duplicate);
 }
