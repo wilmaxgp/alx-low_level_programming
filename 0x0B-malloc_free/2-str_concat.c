@@ -28,12 +28,12 @@ char *str_concat(char *s1, char *s2)
 	result = (char *)malloc((s1_len + s2_len + 1) * sizeof(char));
 
 	if (result == NULL)
-		return NULL;
+		return (NULL);
 
 
 	strcpy(result, s1);
 	strcpy(result + s1_len, s2);
 
 
-	return result;
+	return (result);
 }
