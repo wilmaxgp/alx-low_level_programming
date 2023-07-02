@@ -5,6 +5,7 @@
  * strtow - function that splits a string into words
  * Description: function that splits a string into words
  * @str: The string to split
+ * @count_words: count words
  *
  * Return: Pointer to an array of strings (words), or NULL on failure
  */
