@@ -96,13 +96,13 @@ char *trim_start(char *str)
  *
  * Return: void
  */
-int i;
-int j;
-int word_count;
-char **words;
-
 char **strtow(char *str)
 {
+	int i;
+	int j;
+	int word_count;
+	char **words;
+
 	if (str == NULL || *str == '\0')
 	{
 		return (NULL);
