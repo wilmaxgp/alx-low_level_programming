@@ -1,88 +1,148 @@
 #include "main.h"
 
+int count_words(char *str);
+char **strtow(char *str);
+char *extract_word(char *str);
+char *trim_start(char *str);
+
 
 /**
- * word_len - Locates the index marking the end of the
- *            first word contained within a string.
- * @str: The string to be searched.
+ * count_words - takes a string as input and counts words in string.
+ * Description: takes a string str as input and
+ * counts the number of words in the string.
+ * @str: String input
  *
- * Return: The index marking the end of the initial word pointed to by str.
- */
-int word_len(char *str)
-{
-	int index = 0, len = 0;
-
-	while (*(str + index) && *(str + index) != ' ')
-	{
-		len++;
-		index++;
-	}
-
-	return (len);
-}
-
-/**
- * count_words - Counts the number of words contained within a string.
- * @str: The string to be searched.
- *
- * Return: The number of words contained within str.
+ * Return: total count of words.
  */
 int count_words(char *str)
 {
-	int index = 0, words = 0, len = 0;
+	int count = 0;
+	int word_started = 0;
 
-	for (index = 0; *(str + index); index++)
-		len++;
-
-	for (index = 0; index < len; index++)
+	while (*str)
 	{
-		if (*(str + index) != ' ')
+		if (*str != ' ')
 		{
-			words++;
-			index += word_len(str + index);
+			if (!word_started)
+			{
+				count++;
+				word_started = 1;
+			}
 		}
-	}
+		else
+		{
+			word_started = 0;
+		}
 
-	return (words);
+		str++;
+	}
+	return (count);
 }
 
 /**
- * strtow - Splits a string into words.
- * @str: The string to be split.
+ * extract_word - takes a string as input and extracts a word from it
+ * Description: function takes a string as input and extracts a word from it
+ * @str: String input
  *
- * Return: If str = NULL, str = "", or the function fails - NULL.
- *         Otherwise - a pointer to an array of strings (words).
+ * Return:  pointer to the extracted word
  */
+char *extract_word(char *str)
+{
+	char *start = str;
+	int length = 0;
+	char *word;
+
+	while (*str && *str != ' ')
+	{
+		str++;
+		length++;
+	}
+
+	word = malloc((length + 1) * sizeof(char));
+	if (word == NULL)
+	{
+		return (NULL);
+	}
+
+	strncpy(word, start, length);
+	word[length] = '\0';
+	
+	return (word);
+}
+
+/**
+ * trim_start -  takes a string as input and removes leading spaces from it
+ * Description: This Function takes a string as input
+ * and removes leading spaces from it
+ * @str: String input
+ *
+ * Return: pointer to the string
+ */
+char *trim_start(char *str)
+{
+	while (*str && *str == ' ')
+	{
+		str++;
+	}
+
+	return (str);
+}
+
+
+/**
+ * strtow - function that splits the input string str into words
+ * Description: function that splits the input string str into words
+ * @str: string input
+ *
+ * Return: void
+ */
+int i;
+int j;
+int word_count;
+char **words;
+
 char **strtow(char *str)
 {
-	char **strings;
-	int index = 0,w, letters, l;
-	int words = 0;
+	if (str == NULL || *str == '\0')
+	{
+		return (NULL);
+	}
 
-	if (str == NULL || str[0] == '\0' || words == 0)
+	word_count = count_words(str);
+	words = malloc((word_count + 1) * sizeof(char *));
+	if (words == NULL)
 	{
 		return (NULL);
 	}
-	strings = malloc(sizeof(char *) * (words + 1));
-	if (strings == NULL)
-		return (NULL);
-	for (w = 0; w < words; w++)
+
+	i = 0;
+	str = trim_start(str);
+
+	while (*str)
 	{
-		while (str[index] == ' ')
-			index++;
-		letters = word_len(str + index);
-		strings[w] = malloc(sizeof(char) * (letters + 1));
-		if (strings[w] == NULL)
+		if (*str != ' ')
 		{
-			for (; w >= 0; w--)
-				free(strings[w]);
-			free(strings);
-			return (NULL);
+			char *word = extract_word(str);
+			if (word == NULL)
+			{
+				for (j = 0; j < i; j++)
+				{
+					free(words[j]);
+				}
+				free(words);
+				return (NULL);
+			}
+			words[i] = word;
+			i++;
+			str += strlen(word);
 		}
-		for (l = 0; l < letters; l++)
-			strings[w][l] = str[index++];
-		strings[w][l] = '\0';
+		else
+		{
+			str++;
+		}
+		str = trim_start(str);
 	}
-	strings[w] = NULL;
-	return (strings);
+
+	words[i] = NULL;
+	return (words);
 }
