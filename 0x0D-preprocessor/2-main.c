@@ -1,39 +1,16 @@
-#include <stdlib.h>
-#include <unistd.h>
+#include <stdio.h>
 
 /**
- * _putchar - writes the character c to stdout
- * @c: The character to print
+ * main - prints the name of the file it was compiled from
  *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
- */
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-
-
-
-/**
- * main - check the code
+ * Description: prints the name of the file it was compiled from,
+ * followed by a new line
  *
- * Return: Always 0.
+ * Return: 0 for scuccess
  */
+
 int main(void)
 {
-	int i;
-
-	char *filename = __FILE__;
-
-	for (i = 0; filename[i] != '\0'; i++)
-	{
-		_putchar(filename[i]);
-	}
-	
-	_putchar('\n');
-	
+	printf("%s\n", __FILE__);
 	return (0);
 }
-
