@@ -1,5 +1,13 @@
 #include "main.h"
 
+/*
+ * print_arguments - Prints all the arguments received.
+ * 
+ * argc: The total number of arguments.
+ * argv: An array of strings representing the arguments.
+ * 
+ * Return: void
+ */
 void print_arguments(int argc, char *argv[])
 {
 	int i;
@@ -10,6 +18,14 @@ void print_arguments(int argc, char *argv[])
 	}
 }
 
+/*
+ * main - Entry point
+ * 
+ * argc: The total number of arguments.
+ * argv: An array of strings representing the arguments.
+ *
+ * Return: void
+ */
 int main(int argc, char *argv[])
 {
 	print_arguments(argc, argv);
