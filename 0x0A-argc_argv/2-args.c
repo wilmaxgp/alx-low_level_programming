@@ -2,10 +2,10 @@
 
 /*
  * print_arguments - Prints all the arguments received.
- * Description: Prints all the arguments received. 
- * argc: The total number of arguments.
- * argv: An array of strings representing the arguments.
- * 
+ * Description: Prints all the arguments received
+ * @argc: The total number of arguments.
+ * @argv: An array of strings representing the arguments.
+ *
  * Return: void
  */
 void print_arguments(int argc, char *argv[])
@@ -21,8 +21,8 @@ void print_arguments(int argc, char *argv[])
 /*
  * main - Entry point
  * Description: Entry point of the program
- * argc: The total number of arguments.
- * argv: An array of strings representing the arguments.
+ * @argc: The total number of arguments.
+ * @argv: An array of strings representing the arguments.
  *
  * Return: void
  */
