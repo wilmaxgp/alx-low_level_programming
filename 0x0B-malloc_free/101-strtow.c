@@ -107,7 +107,14 @@ char **strtow(char *str)
 	{
 		return (NULL);
 	}
-	
+
+	str = trim_start(str);
+
+	if (*str == '\0')
+	{
+		return (NULL);
+	}
+
 	word_count = count_words(str);
 	words = malloc((word_count + 1) * sizeof(char *));
 	if (words == NULL)
