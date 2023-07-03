@@ -10,6 +10,7 @@
 int main(int argc, char *argv[])
 {
 	int i;
+	int j;
 	int sum = 0;
 
 	if (argc == 1)
@@ -21,7 +22,7 @@ int main(int argc, char *argv[])
 	for (i = 1; i < argc; i++)
 	{
 		char *arg = argv[i];
-		int j = 0;
+		j = 0;
 
 		while (arg[j])
 		{
@@ -31,13 +32,14 @@ int main(int argc, char *argv[])
 				return (1);
 			}
 			j++;
-		}
-		
+
 		sum += atoi(arg);
+		}
+
 	}
 
 	printf("%d\n", sum);
 
 	return (0);
-}
 
+}
