@@ -1,7 +1,7 @@
 #include "main.h"
 
-/*
- * print_arguments - Prints all the arguments received.
+/**
+ * print_arguments- Prints all the arguments received.
  * Description: Prints all the arguments received
  * @argc: The total number of arguments.
  * @argv: An array of strings representing the arguments.
@@ -18,7 +18,7 @@ void print_arguments(int argc, char *argv[])
 	}
 }
 
-/*
+/**
  * main - Entry point
  * Description: Entry point of the program
  * @argc: The total number of arguments.
