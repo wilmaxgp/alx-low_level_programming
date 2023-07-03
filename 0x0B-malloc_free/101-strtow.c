@@ -66,7 +66,7 @@ char *extract_word(char *str)
 
 	strncpy(word, start, length);
 	word[length] = '\0';
-	
+
 	return (word);
 }
 
@@ -130,6 +130,7 @@ char **strtow(char *str)
 		if (*str != ' ')
 		{
 			char *word = extract_word(str);
+
 			if (word == NULL)
 			{
 				for (j = 0; j < i; j++)
