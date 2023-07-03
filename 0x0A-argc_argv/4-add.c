@@ -22,8 +22,8 @@ int main(int argc, char *argv[])
 	for (i = 1; i < argc; i++)
 	{
 		char *arg = argv[i];
-		j = 0;
 
+		j = 0;
 
 		while (arg[j])
 		{
