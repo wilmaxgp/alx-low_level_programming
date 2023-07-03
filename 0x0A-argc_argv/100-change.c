@@ -24,23 +24,22 @@ int main(int argc, char *argv[])
 	}
 
 	cents = atoi(argv[1]);
-	
+
 	if (cents < 0)
 	{
 		printf("0\n");
 		return (0);
 	}
-	
+
 	num_coins = sizeof(coins) / sizeof(coins[0]);
 	count = 0;
-	
+
 	for (i = 0; i < num_coins; i++)
 	{
 		count += cents / coins[i];
 		cents %= coins[i];
 	}
-	
+
 	printf("%d\n", count);
 	return (0);
 }
-
