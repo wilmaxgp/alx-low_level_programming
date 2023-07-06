@@ -9,71 +9,77 @@
  *
  * Return: void
  */
-void multiply(const char* num1, const char* num2, char* result) {
-    int len1 = strlen(num1);
-    int len2 = strlen(num2);
-    int len3 = len1 + len2;
-    int i, j;
-    int* prod = calloc(len3, sizeof(int));
-    int offset;
+int isPositiveInteger(const char *str) {
+    int i;
+    int len = strlen(str);
+    
+    if (len == 0)
+        return 0;
+    
+    for (i = 0; i < len; i++) {
+        if (str[i] < '0' || str[i] > '9')
+            return 0;
+    }
+    
+    return 1;
+}
 
+void multiply(const char *num1, const char *num2) {
+    int i, j, len1, len2, len;
+    int *result;
+    
+    len1 = strlen(num1);
+    len2 = strlen(num2);
+    len = len1 + len2;
+    
+    result = (int *)malloc(sizeof(int) * len);
+    if (result == NULL) {
+        printf("Error\n");
+        exit(98);
+    }
+    
+    for (i = 0; i < len; i++) {
+        result[i] = 0;
+    }
+    
     for (i = len1 - 1; i >= 0; i--) {
         for (j = len2 - 1; j >= 0; j--) {
             int digit1 = num1[i] - '0';
             int digit2 = num2[j] - '0';
-            int sum = prod[i + j + 1] + (digit1 * digit2);
-            prod[i + j + 1] = sum % 10;
-            prod[i + j] += sum / 10;
+            int product = digit1 * digit2;
+            int sum = result[i + j + 1] + product;
+            
+            result[i + j] += sum / 10;
+            result[i + j + 1] = sum % 10;
         }
     }
-
-    offset = 0;
-    while (offset < len3 - 1 && prod[offset] == 0) {
-        offset++;
+    
+    i = 0;
+    while (i < len - 1 && result[i] == 0) {
+        i++;
     }
-
-    for (i = offset, j = 0; i < len3; i++, j++) {
-        result[j] = prod[i] + '0';
+    
+    for (; i < len; i++) {
+        printf("%d", result[i]);
     }
-    result[len3 - offset] = '\0';
-
-    free(prod);
-
+    printf("\n");
+    
+    free(result);
 }
 
-
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     if (argc != 3) {
         printf("Error\n");
         return 98;
     }
-
-    const char* num1 = argv[1];
-    const char* num2 = argv[2];
-
-    int i;
-    for (i = 0; i < strlen(num1); i++) {
-        if (num1[i] < '0' || num1[i] > '9') {
-            printf("Error\n");
-            return 98;
-        }
+    
+    if (!isPositiveInteger(argv[1]) || !isPositiveInteger(argv[2])) {
+        printf("Error\n");
+        return 98;
     }
-
-    for (i = 0; i < strlen(num2); i++) {
-        if (num2[i] < '0' || num2[i] > '9') {
-            printf("Error\n");
-            return 98;
-        }
-    }
-
-    int len1 = strlen(num1);
-    int len2 = strlen(num2);
-    int len3 = len1 + len2 + 1;
-    char* result = malloc(len3 * sizeof(char));
-
-    multiply(num1, num2, result);
-    printf("%s\n", result);
-
-    free(result);
+    
+    multiply(argv[1], argv[2]);
+    
     return 0;
 }
+
