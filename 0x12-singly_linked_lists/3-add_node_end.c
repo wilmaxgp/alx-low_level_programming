@@ -77,7 +77,7 @@ list_t *create_node(const char *str)
 list_t *find_last_node(list_t *head)
 {
 	list_t *current = head;
-	
+
 	while (current->next != NULL)
 		current = current->next;
 
