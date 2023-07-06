@@ -5,7 +5,7 @@
  * @h: pointer to the head of the list
  *
  * Description: singly linked list node structure
- * Return: void  
+ * Return: void
  */
 size_t print_list(const list_t *h)
 {
