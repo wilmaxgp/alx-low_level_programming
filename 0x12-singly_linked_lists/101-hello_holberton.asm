@@ -1,5 +1,6 @@
 section .data
     format db "Hello, Holberton", 0
+    newline db 10, 0
 
 section .text
     global main
@@ -10,8 +11,13 @@ main:
     push rbp
     mov rbp, rsp
 
-    ; Call printf
+    ; Call printf to print the message
     mov edi, format
+    xor eax, eax
+    call printf
+
+    ; Call printf to print a new line
+    mov edi, newline
     xor eax, eax
     call printf
 
