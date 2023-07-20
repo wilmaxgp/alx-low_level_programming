@@ -5,7 +5,7 @@
  * @n: number of binary to print
  *
  * Description: function that prints the binary representation of a number.
- * Return: void 
+ * Return: void
  */
 void print_binary(unsigned long int n)
 {
