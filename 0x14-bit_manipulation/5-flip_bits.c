@@ -17,7 +17,7 @@ unsigned int count_set_bits(unsigned long int n)
 }
 
 /**
- * flip_bits - Counts the number of bits needed to flip to get from one 
+ * flip_bits - Counts the number of bits needed to flip to get from one
  * number to another
  * @n: The first input number
  * @m: The second input number
