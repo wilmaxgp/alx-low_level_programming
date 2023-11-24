@@ -17,7 +17,8 @@ unsigned int count_set_bits(unsigned long int n)
 }
 
 /**
- * flip_bits - Counts the number of bits needed to flip to get from one number to another
+ * flip_bits - Counts the number of bits needed to flip to get from one 
+ * 		number to another
  * @n: The first input number
  * @m: The second input number
  *
@@ -26,5 +27,6 @@ unsigned int count_set_bits(unsigned long int n)
 unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
 	unsigned long int xor_result = n ^ m;
+
 	return (count_set_bits(xor_result));
 }
