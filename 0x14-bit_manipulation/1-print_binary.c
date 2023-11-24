@@ -9,24 +9,21 @@
  */
 void print_binary(unsigned long int n)
 {
-    unsigned long int mask = 1UL << (sizeof(unsigned long int) * 8 - 1);
-    int flag = 0;
-
-    while (mask > 0)
+    if (n == 0)
     {
-        if ((n & mask) || flag)
-        {
-            flag = 1;
-            if (n & mask)
-                _putchar('1');
-            else
-                _putchar('0');
-        }
-        mask >>= 1;
+        _putchar('0');
+        return;
     }
 
-    if (!flag)
-        _putchar('0');
+    int count = 0;
+    int shift = sizeof(unsigned long int) * 8 - 1;
 
-    _putchar('\n');
+    while ((n >> shift) == 0)
+        shift--;
+
+    for (; shift >= 0; shift--)
+    {
+        count++;
+        _putchar((n >> shift) & 1 ? '1' : '0');
+    }
 }
