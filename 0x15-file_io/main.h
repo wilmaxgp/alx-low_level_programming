@@ -7,6 +7,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <elf.h>
 
 #define BUF_SIZE 1024
 
