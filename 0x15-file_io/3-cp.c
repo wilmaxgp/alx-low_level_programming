@@ -24,7 +24,7 @@ void close_file(int fd, const char *filename)
 	if (close(fd) == -1)
 	{
 		char error_msg[256];
-		snprintf(error_msg, sizeof(error_msg), "Error: Can't close file descriptor for %s", filename);
+		snprintf(error_msg, sizeof(error_msg), "Error: Can't close fd %s", filename);
 		error_exit(100, error_msg);
 	}
 }
@@ -45,7 +45,6 @@ int main(int argc, char *argv[])
 		error_exit(97, "Usage: cp file_from file_to");
 
 	fd_from = open(argv[1], O_RDONLY);
-
 	if (fd_from == -1)
 	{
 		char error_msg[256];
@@ -54,7 +53,6 @@ int main(int argc, char *argv[])
 	}
 
 	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, PERMISSIONS);
-	
 	if (fd_to == -1)
 	{
 		char error_msg[256];
@@ -85,3 +83,4 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
+
