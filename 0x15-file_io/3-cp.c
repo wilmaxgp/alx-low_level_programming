@@ -24,6 +24,7 @@ void close_file(int fd, const char *filename)
 	if (close(fd) == -1)
 	{
 		char error_msg[256];
+
 		snprintf(error_msg, sizeof(error_msg), "Error: Can't close fd %s", filename);
 		error_exit(100, error_msg);
 	}
@@ -48,6 +49,7 @@ int main(int argc, char *argv[])
 	if (fd_from == -1)
 	{
 		char error_msg[256];
+
 		snprintf(error_msg, sizeof(error_msg), "Error: Can't read from file %s", argv[1]);
 		error_exit(98, error_msg);
 	}
@@ -56,6 +58,7 @@ int main(int argc, char *argv[])
 	if (fd_to == -1)
 	{
 		char error_msg[256];
+
 		snprintf(error_msg, sizeof(error_msg), "Error: Can't write to %s", argv[2]);
 		error_exit(99, error_msg);
 	}
@@ -66,6 +69,7 @@ int main(int argc, char *argv[])
 		if (bytes_written != bytes_read)
 		{
 			char error_msg[256];
+
 			snprintf(error_msg, sizeof(error_msg), "Error: Can't write to %s", argv[2]);
 			error_exit(99, error_msg);
 		}
@@ -74,6 +78,7 @@ int main(int argc, char *argv[])
 	if (bytes_read == -1)
 	{
 		char error_msg[256];
+
 		snprintf(error_msg, sizeof(error_msg), "Error: Can't read from file %s", argv[1]);
 		error_exit(98, error_msg);
 	}
