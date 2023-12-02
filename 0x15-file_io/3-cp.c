@@ -15,6 +15,21 @@ void error_exit(int err_code, const char *msg)
 }
 
 /**
+ * close_file - Close file descriptor with error check
+ * @fd: File descriptor to close
+ * @filename: File name associated with the file descriptor
+ */
+void close_file(int fd, const char *filename)
+{
+	if (close(fd) == -1)
+	{
+		char error_msg[256];
+		snprintf(error_msg, sizeof(error_msg), "Error: Can't close file descriptor for %s", filename);
+		error_exit(100, error_msg);
+	}
+}
+
+/**
  * main - Entry point
  * @argc: Argument count
  * @argv: Argument vector
@@ -39,7 +54,7 @@ int main(int argc, char *argv[])
 	}
 
 	fd_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, PERMISSIONS);
-
+	
 	if (fd_to == -1)
 	{
 		char error_msg[256];
@@ -65,19 +80,8 @@ int main(int argc, char *argv[])
 		error_exit(98, error_msg);
 	}
 
-	if (close(fd_from) == -1)
-	{
-		char error_msg[256];
-		snprintf(error_msg, sizeof(error_msg), "Error: Can't close file descriptor for %s", argv[1]);
-		error_exit(100, error_msg);
-	}
-
-	if (close(fd_to) == -1)
-	{
-		char error_msg[256];
-		snprintf(error_msg, sizeof(error_msg), "Error: Can't close file descriptor for %s", argv[2]);
-		error_exit(100, error_msg);
-	}
+	close_file(fd_from, argv[1]);
+	close_file(fd_to, argv[2]);
 
 	return (0);
 }
