@@ -38,15 +38,15 @@ void close_file(int fd, const char *filename)
 }
 
 /**
- * copy_file - Copy contents from one file to another
+ * main - Entry point
  * @argc: Argument count
  * @argv: Argument vector
  * Return: 0 on success
  *
- * The copy_file function is the entry point of the program.
+ * The main function is the entry point of the program.
  * It copies contents from one file to another.
  */
-int copy_file(int argc, char *argv[])
+int main(int argc, char *argv[])
 {
 	int fd_from, fd_to;
 	ssize_t bytes_read, bytes_written;
