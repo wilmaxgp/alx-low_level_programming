@@ -114,5 +114,5 @@ int main(int argc, char *argv[])
 	close_file(fd_from, argv[1]);
 	close_file(fd_to, argv[2]);
 
-	return (0;)
+	return (0);
 }
