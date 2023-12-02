@@ -7,6 +7,9 @@
  * error_exit - Print error message and exit
  * @err_code: Error code
  * @msg: Error message
+ *
+ * This function prints an error message to stderr and exits the program
+ * with the given error code.
  */
 void error_exit(int err_code, const char *msg)
 {
@@ -18,6 +21,9 @@ void error_exit(int err_code, const char *msg)
  * close_file - Close file descriptor with error check
  * @fd: File descriptor to close
  * @filename: File name associated with the file descriptor
+ *
+ * This function attempts to close the given file descriptor.
+ * If an error occurs, it prints an error message and exits.
  */
 void close_file(int fd, const char *filename)
 {
@@ -25,18 +31,22 @@ void close_file(int fd, const char *filename)
 	{
 		char error_msg[256];
 
-		snprintf(error_msg, sizeof(error_msg), "Error: Can't close fd %s", filename);
+		snprintf(error_msg, sizeof(error_msg),
+				"Error: Can't close fd %s", filename);
 		error_exit(100, error_msg);
 	}
 }
 
 /**
- * main - Entry point
+ * copy_file - Copy contents from one file to another
  * @argc: Argument count
  * @argv: Argument vector
  * Return: 0 on success
+ *
+ * The copy_file function is the entry point of the program.
+ * It copies contents from one file to another.
  */
-int main(int argc, char *argv[])
+int copy_file(int argc, char *argv[])
 {
 	int fd_from, fd_to;
 	ssize_t bytes_read, bytes_written;
@@ -50,7 +60,8 @@ int main(int argc, char *argv[])
 	{
 		char error_msg[256];
 
-		snprintf(error_msg, sizeof(error_msg), "Error: Can't read from file %s", argv[1]);
+		snprintf(error_msg, sizeof(error_msg),
+				"Error: Can't read from file %s", argv[1]);
 		error_exit(98, error_msg);
 	}
 
@@ -58,8 +69,9 @@ int main(int argc, char *argv[])
 	if (fd_to == -1)
 	{
 		char error_msg[256];
-
-		snprintf(error_msg, sizeof(error_msg), "Error: Can't write to %s", argv[2]);
+		
+		snprintf(error_msg, sizeof(error_msg),
+				"Error: Can't write to %s", argv[2]);
 		error_exit(99, error_msg);
 	}
 
@@ -70,7 +82,8 @@ int main(int argc, char *argv[])
 		{
 			char error_msg[256];
 
-			snprintf(error_msg, sizeof(error_msg), "Error: Can't write to %s", argv[2]);
+			snprintf(error_msg, sizeof(error_msg),
+					"Error: Can't write to %s", argv[2]);
 			error_exit(99, error_msg);
 		}
 	}
@@ -79,7 +92,8 @@ int main(int argc, char *argv[])
 	{
 		char error_msg[256];
 
-		snprintf(error_msg, sizeof(error_msg), "Error: Can't read from file %s", argv[1]);
+		snprintf(error_msg, sizeof(error_msg),
+				"Error: Can't read from file %s", argv[1]);
 		error_exit(98, error_msg);
 	}
 
@@ -88,4 +102,3 @@ int main(int argc, char *argv[])
 
 	return (0);
 }
-
