@@ -6,18 +6,13 @@
  * error_exit - handles error cases and exits
  * @code: error code
  * @message: error message format string
- * @file_name: name of the file causing the error
- * @fd: file descriptor value
  *
- * This function prints an error message, closes file descriptors if needed,
- * and exits the program with the provided error code.
+ * This function prints an error message and exits the program with
+ * the provided error code.
  */
-void error_exit(int code, char *message, char *file_name, int fd) {
-        dprintf(STDERR_FILENO, message, file_name);
-    
-	if (fd != -1 && close(fd) == -1) {
-        dprintf(STDERR_FILENO, " ");
-    }
+void error_exit(int code, const char *message)
+{
+    dprintf(STDERR_FILENO, "%s\n", message);
     exit(code);
 }
 
@@ -28,36 +23,36 @@ void error_exit(int code, char *message, char *file_name, int fd) {
  *
  * Return: 0 on success, otherwise error codes based on specific failures.
  */
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     int file_from, file_to;
     ssize_t nchars, nwr;
-    char buf[1024];
+    char buf[BUFFER_SIZE];
 
-    if (argc != 3) {
-        dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
-        exit(97);
-    }
+    if (argc != 3)
+        error_exit(97, "Usage: cp file_from file_to");
 
     file_from = open(argv[1], O_RDONLY);
-    file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-
     if (file_from == -1)
-        error_exit(98, "Error: Can't read from file %s\n", argv[1], -1);
-    if (file_to == -1)
-        error_exit(99, "Error: Can't write to %s\n", argv[2], file_from);
+        error_exit(98, "Error: Can't read from file");
 
-    while ((nchars = read(file_from, buf, 1024)) > 0) {
+    file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+    if (file_to == -1)
+        error_exit(99, "Error: Can't write to file");
+
+    while ((nchars = read(file_from, buf, BUFFER_SIZE)) > 0)
+    {
         nwr = write(file_to, buf, nchars);
-        if (nwr == -1)
-            error_exit(99, "Error: Can't write to %s\n", argv[2], file_from);
+        if (nwr != nchars)
+            error_exit(99, "Error: Can't write to file");
     }
 
     if (nchars == -1)
-        error_exit(98, "Error: Can't read from file %s\n", argv[1], file_from);
+        error_exit(98, "Error: Can't read from file");
 
     if (close(file_from) == -1 || close(file_to) == -1)
-        error_exit(100, "Error: Can't close fd\n", "", -1);
+        error_exit(100, "Error: Can't close file");
 
-    return (0);
+    return 0;
 }
 
