@@ -54,6 +54,9 @@ void copy_file(const char *file_from, const char *file_to) {
 
     if (close(fd_from) == -1 || close(fd_to) == -1)
         error_exit(100, "Error: Can't close fd %d\n", "", -1);
+
+    if (fchmod(fd_to, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH) == -1)
+        error_exit(99, "Error: Can't set permissions for %s\n", (char *)file_to, fd_from);
 }
 
 /**
