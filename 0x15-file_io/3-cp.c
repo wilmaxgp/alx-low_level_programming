@@ -28,7 +28,7 @@ void error_exit(int code, char *message, char *file_name, int fd)
  * This function copies the content of file_from to file_to.
  * It handles errors according to the guidelines provided.
  */
-void copy_file(const char *file_from, const char *file_to) 
+void copy_file(const char *file_from, const char *file_to)
 {
 	int fd_from, fd_to, bytes_read, bytes_written;
 	char buffer[BUFFER_SIZE];
@@ -37,7 +37,8 @@ void copy_file(const char *file_from, const char *file_to)
 	if (fd_from == -1)
 		error_exit(98, "Error: Can't read from file %s\n", (char *)file_from, -1);
 
-	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
+	fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC
+			, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
 	if (fd_to == -1)
 		error_exit(99, "Error: Can't write to %s\n", (char *)file_to, fd_from);
 
@@ -54,7 +55,8 @@ void copy_file(const char *file_from, const char *file_to)
 	}
 
 	if (bytes_read == -1)
-		error_exit(98, "Error: Can't read from file %s\n", (char *)file_from, fd_from);
+		error_exit(98, 
+				"Error: Can't read from file %s\n", (char *)file_from, fd_from);
 
 	if (close(fd_from) == -1 || close(fd_to) == -1)
 		error_exit(100, "Error: Can't close fd\n", "", -1);
