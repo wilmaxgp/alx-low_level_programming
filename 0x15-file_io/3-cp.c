@@ -13,12 +13,9 @@
  * and exits the program with the provided error code.
  */
 void error_exit(int code, char *message, char *file_name, int fd) {
-    if (file_name != NULL) {
         dprintf(STDERR_FILENO, message, file_name);
-    } else {
-        dprintf(STDERR_FILENO, "%s", message);
-    }
-    if (fd != -1 && close(fd) == -1) {
+    
+	if (fd != -1 && close(fd) == -1) {
         dprintf(STDERR_FILENO, " ");
     }
     exit(code);
