@@ -16,7 +16,8 @@
 void print_error(int code, const char *message, const char *file_name, int fd)
 {
 	dprintf(STDERR_FILENO, "%s: %s %s", message, file_name, fd >= 0 ? "fd" : "");
-	if (fd >= 0) dprintf(STDERR_FILENO, "%d", fd);
+	if (fd >= 0)
+		dprintf(STDERR_FILENO, "%d", fd);
 	dprintf(STDERR_FILENO, "\n");
 	exit(code);
 }
