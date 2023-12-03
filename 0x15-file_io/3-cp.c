@@ -35,7 +35,7 @@ void copy_file(const char *file_from, const char *file_to) {
     if (fd_from == -1)
         error_exit(98, "Error: Can't read from file %s\n", (char *)file_from, -1);
 
-    fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+    fd_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
     if (fd_to == -1)
         error_exit(99, "Error: Can't write to %s\n", (char *)file_to, fd_from);
 
@@ -53,8 +53,9 @@ void copy_file(const char *file_from, const char *file_to) {
         error_exit(98, "Error: Can't read from file %s\n", (char *)file_from, fd_from);
 
     if (close(fd_from) == -1 || close(fd_to) == -1)
-        error_exit(100, "Error: Can't close fd %d\n", "", -1);
+        error_exit(100, "Error: Can't close fd\n", "", -1);
 }
+
 /**
  * main - entry point
  * @argc: argument count
