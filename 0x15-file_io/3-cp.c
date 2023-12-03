@@ -106,29 +106,47 @@ int main(int argc, char *argv[]) {
     }
 
     file_from = open(argv[1], O_RDONLY);
+    if (file_from == -1) {
+        dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+        return 98;
+    }
+
     file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0644);
-    error_file(file_from, file_to, argv);
+    if (file_to == -1) {
+        dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+        return 99;
+    }
 
     nchars = BUFFER_SIZE;
     while (nchars == BUFFER_SIZE) {
         nchars = read(file_from, buf, BUFFER_SIZE);
-        if (nchars == -1)
-            error_file(-1, 0, argv);
+        if (nchars == -1) {
+            dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+            return 98;
+        }
         nwr = write(file_to, buf, nchars);
-        if (nwr == -1)
-            error_file(0, -1, argv);
+        if (nwr == -1) {
+            dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+            return 99;
+        }
     }
 
     err_close = close(file_from);
     if (err_close == -1) {
         dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
-        exit(100);
+        return 100;
     }
 
     err_close = close(file_to);
     if (err_close == -1) {
         dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
-        exit(100);
+        return 100;
+    }
+
+    /* Set permissions for the copied file */
+    if (chmod(argv[2], 0664) == -1) {
+        dprintf(STDERR_FILENO, "Error: Can't set permissions for %s\n", argv[2]);
+        return 99;
     }
 
     return 0;
