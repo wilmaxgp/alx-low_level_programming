@@ -112,11 +112,27 @@ int append_text_to_file(const char *filename, char *text_content) {
  * @filename: The name of the file associated with the error.
  * @fd: The file descriptor associated with the error (-1 if not applicable).
  */
-void print_error(int code __attribute__((unused)), const char *message, const char *filename, int fd) {
-    if (fd == -1) {
-        dprintf(STDERR_FILENO, "%s: %s\n", message, filename);
-    } else {
-        dprintf(STDERR_FILENO, "%s: %s\n", message, filename);
+void print_error(int code, const char *message __attribute__((unused)), const char *filename, int fd) {
+    if (code == 97) {
+        dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+    } else if (code == 98) {
+        if (filename[0] == '\0') {
+            dprintf(STDERR_FILENO, "Error: Can't read from file: [Anything]\n");
+        } else {
+            dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
+        }
+    } else if (code == 99) {
+        if (filename[0] == '\0') {
+            dprintf(STDERR_FILENO, "Error: Can't write to file: [Anything]\n");
+        } else {
+            dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
+        }
+    } else if (code == 100) {
+        if (fd == -1) {
+            dprintf(STDERR_FILENO, "Error: Can't close fd: [Anything]\n");
+        } else {
+            dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
+        }
     }
 }
 
