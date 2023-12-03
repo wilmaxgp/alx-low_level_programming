@@ -112,13 +112,14 @@ int append_text_to_file(const char *filename, char *text_content) {
  * @filename: The name of the file associated with the error.
  * @fd: The file descriptor associated with the error (-1 if not applicable).
  */
-void print_error(int code, const char *message, const char *filename, int fd) {
-    if (fd != -1)
-        dprintf(STDERR_FILENO, "%s %s fd %d\n", message, filename, fd);
-    else
-        dprintf(STDERR_FILENO, "%s %s\n", message, filename);
-    exit(code);
+void print_error(int code __attribute__((unused)), const char *message, const char *filename, int fd) {
+    if (fd == -1) {
+        dprintf(STDERR_FILENO, "%s: %s\n", message, filename);
+    } else {
+        dprintf(STDERR_FILENO, "%s: %s\n", message, filename);
+    }
 }
+
 
 /**
  * open_files - Opens two files for reading and writing operations.
