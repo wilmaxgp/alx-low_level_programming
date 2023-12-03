@@ -18,12 +18,9 @@ void error_exit(int code, char *message, char *file_name, int fd) {
     } else {
         dprintf(STDERR_FILENO, "%s", message);
     }
-
     if (fd != -1 && close(fd) == -1) {
-        dprintf(STDERR_FILENO, "Error: Can't close fd\n");
-        exit(100);
+        dprintf(STDERR_FILENO, " ");
     }
-
     exit(code);
 }
 
