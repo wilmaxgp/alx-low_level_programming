@@ -12,11 +12,12 @@
  */
 void error_exit(int code, char *message, char *file_name, int fd) {
     dprintf(STDERR_FILENO, message, file_name);
-    if (fd != -1)
-        close(fd);
+    if (fd != -1 && close(fd) == -1) {
+        dprintf(STDERR_FILENO, "Error: Can't close fd\n");
+        exit(100);
+    }
     exit(code);
 }
-
 /**
  * main - copies content of one file to another
  * @argc: argument count
