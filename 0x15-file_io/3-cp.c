@@ -101,7 +101,7 @@ int main(int argc, char *argv[]) {
     char buf[BUFFER_SIZE];
 
     if (argc != 3) {
-        dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", argv[0]);
+        dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
         return 97;
     }
 
