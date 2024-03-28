@@ -1,24 +1,17 @@
-CC := gcc
-SRC := main.c school.c
-OBJ := $(SRC:.c=.o)
-NAME := school
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
 
-all:	$(NAME)
-
-$(NAME):	$(OBJ)
+all:	$(OBJ)
 	$(CC)	$(OBJ)	-o	$(NAME)
 
-%.o: %.c
+%.o:	%.c
 	$(CC)	-c	$<	-o	$@
+	@echo	"$(CC)	-c	-o	$@	$<"
+
+.PHONY:	clean
 
 clean:
-	rm	-f	*~	$(OBJ)
-
-oclean:
 	rm	-f	$(OBJ)
-
-fclean:	clean
-	rm	-f	$(NAME)
-
-re:	fclean	all
 
