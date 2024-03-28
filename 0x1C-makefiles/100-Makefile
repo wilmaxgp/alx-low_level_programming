@@ -2,6 +2,17 @@ CC = gcc
 SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = school
+RM = /bin/rm
+CFLAGS = -Wall -Werror -Wextra -pedantic
+
+.PHONY: all clean fclean oclean re
+
+CC = gcc
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+RM = /bin/rm
+CFLAGS = -Wall -Werror -Wextra -pedantic
 
 .PHONY: all clean fclean oclean re
 
@@ -11,16 +22,26 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $@
 
 clean:
-	/bin/rm -f $(NAME) *~ \#*\#
+	$(RM) -f $(NAME) *~ \#*\#
 
 oclean:
-	/bin/rm -f $(OBJ)
+	$(RM) -f $(OBJ)
 
 fclean: clean oclean
 
 re: fclean all
 
-%: %.c
-	$(CC) -Wall -Werror -Wextra -pedantic -c $< -o $(<:.c=.o)
+$(OBJ): $(SRC)
+	$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+
+$(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
+
+check_missing_header:
+ifndef M_H
+	$(error m.h is missing)
+endif
+
+check: check_missing_header
+
 
