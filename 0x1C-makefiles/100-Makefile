@@ -1,9 +1,10 @@
 CC = gcc
-SRC := $(wildcard *.c)
-OBJ := $(SRC:.c=.o)
+CFLAGS = -Wall -Werror -Wextra -pedantic
+
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
 NAME = school
 RM = /bin/rm
-CFLAGS := -Wall -Werror -Wextra -pedantic
 
 .PHONY: all clean fclean oclean re
 
@@ -21,9 +22,6 @@ oclean:
 fclean: clean oclean
 
 re: fclean all
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
 
 check: check_missing_header
 
