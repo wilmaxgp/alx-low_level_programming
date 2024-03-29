@@ -1,13 +1,15 @@
-CC := gcc
-CFLAGS := -Wall -Werror -Wextra -pedantic
+# 0x1C-makefiles\100-Makefile
 
-SRC := main.c
-OBJ := $(SRC:.c=.o)
-NAME := school
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -pedantic
+RM = rm -f
 
-RM := rm -f
+SRC = main.c
+OBJ = $(SRC:.c=.o)
+NAME = school
+RM := /bin/rm
 
-.PHONY: all clean fclean oclean re check_missing_header
+.PHONY: all clean oclean fclean re
 
 all: $(NAME)
 
@@ -15,11 +17,10 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $@
 
 clean:
-	@$(RM) $(NAME)
-	@$(RM) *~ \#*\#
+	@$(RM) -f $(NAME) *~ \#*\#
 
 oclean:
-	@$(RM) $(OBJ)
+	@$(RM) -f $(OBJ)
 
 fclean: clean oclean
 
