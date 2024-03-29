@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-SRC = main.c
+SRC = main.c other_file.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 RM := /bin/rm
