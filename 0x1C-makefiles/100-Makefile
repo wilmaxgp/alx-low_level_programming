@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-SRC = main.c other_file.c
+SRC = main.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 RM := /bin/rm
@@ -29,3 +29,5 @@ ifndef M_H
 endif
 
 check: check_missing_header
+
+-include $(SRC:.c=.d)
