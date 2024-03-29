@@ -1,12 +1,12 @@
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic
 
-SRC = main.c school.c
+SRC = main.c other_file.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 RM = /bin/rm
 
-.PHONY: all clean fclean oclean re
+.PHONY: all clean fclean oclean re check_missing_header
 
 all: $(NAME)
 
@@ -23,10 +23,9 @@ fclean: clean oclean
 
 re: fclean all
 
-check: check_missing_header
-
 check_missing_header:
 ifndef M_H
 	$(error m.h is missing)
 endif
 
+check: check_missing_header
