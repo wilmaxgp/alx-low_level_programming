@@ -28,6 +28,7 @@ size_t print_listint_safe(const listint_t *head)
 		/* If slow and fast meet, it means there is a loop */
 		if (slow == fast)
 		{
+			/* Print the looped node */
 			printf("-> [%p] %d\n", (void *)slow, slow->n);
 			return (count + 1);
 		}
