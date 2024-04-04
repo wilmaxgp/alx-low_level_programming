@@ -1,19 +1,31 @@
 #include "lists.h"
+#include <stdio.h> /* Include necessary standard library header */
 
 /**
  * free_listint2 - frees a listint_t list and sets the head to NULL
  * @head: pointer to a pointer to the head of the list
  */
-void free_listint2(listint_t **head)
+void free_listint2(head)
+listint_t **head;
 {
-	listint_t *temp;
-
-	while (*head != NULL)
+	if (head == NULL || *head == NULL)
 	{
-		temp = *head;
-		*head = (*head)->next;
-		free(temp);
+		printf("Freed !\n");
+		return;
 	}
 
-	printf("Freed !\n");
+	listint_t *temp;
+	listint_t *current = *head;
+	int count = 0;
+
+	while (current != NULL)
+	{
+		temp = current;
+		current = current->next;
+		free(temp);
+		count++;
+	}
+
+	*head = NULL; /* Set the head to NULL after freeing the list */
+	printf("-> %d elements\n", count);
 }
