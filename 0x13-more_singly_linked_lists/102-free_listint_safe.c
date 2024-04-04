@@ -7,86 +7,28 @@
  *
  * Return: The size of the list that was freed
  */
-// size_t free_listint_safe(listint_t **h)
-// {
-// 	listint_t *slow, *fast, *temp;
-// 	size_t count = 0;
-
-// 	if (h == NULL || *h == NULL)
-// 		return (0);
-
-// 	slow = *h;
-// 	fast = (*h)->next;
-
-// 	while (fast != NULL && fast->next != NULL)
-// 	{
-// 		temp = slow;
-// 		slow = slow->next;
-// 		fast = fast->next->next;
-// 		free(temp);
-// 		count++;
-
-// 		if (slow == fast)
-// 		{
-// 			*h = NULL;
-// 			break;
-// 		}
-// 	}
-
-// 	if (slow == fast)
-// 	{
-// 		/* Loop detected */
-// 		slow = *h;
-// 		while (slow != fast)
-// 		{
-// 			temp = fast;
-// 			fast = fast->next;
-// 			free(temp);
-// 			count++;
-// 		}
-// 	}
-
-// 	/* Free the remaining nodes */
-// 	while (slow != NULL)
-// 	{
-// 		temp = slow;
-// 		slow = slow->next;
-// 		free(temp);
-// 		count++;
-// 	}
-
-// 	*h = NULL;
-// 	return (count);
-// }
-
 size_t free_listint_safe(listint_t **h)
 {
-    listint_t *current, *next;
-    size_t count = 0;
+	listint_t *current, *next;
+	size_t count = 0;
 
-    if (h == NULL || *h == NULL)
-        return (0);
+	if (h == NULL || *h == NULL)
+		return (0);
 
-    current = *h;
+	current = *h;
 
-    while (current != NULL)
-    {
-        next = current->next;
-        printf("Freeing node %p\n", (void *)current);
-        free(current);
-        count++;
+	while (current != NULL)
+	{
+		next = current->next;
+		free(current);
+		count++;
 
-        if (next >= current)
-        {
-            printf("Loop detected, breaking out of loop\n");
-            *h = NULL;
-            break;
-        }
+		if (next >= current)
+			break;
 
-        current = next;
-    }
+		current = next;
+	}
 
-    *h = NULL;
-    return (count);
+	*h = NULL;
+	return (count);
 }
-
