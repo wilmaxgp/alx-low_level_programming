@@ -1,9 +1,11 @@
 #include "lists.h"
-#include <stdio.h>
 
 /**
- * free_listint2 - frees a listint_t list and sets the head to NULL
- * @head: pointer to a pointer to the head of the list
+ * free_listint2 - Frees a listint_t list and sets the head to NULL
+ * @head: A pointer to a pointer to the head of the list
+ *
+ * Description: This function frees a listint_t list and sets the head to NULL.
+ *              It uses the listint_t struct defined in lists.h header file.
  */
 void free_listint2(listint_t **head)
 {
@@ -26,5 +28,5 @@ void free_listint2(listint_t **head)
     }
 
     *head = NULL; /* Set the head to NULL after freeing the list */
-    printf("-> %d elements\n", count);
+    printf("Freed %d elements\n", count);
 }
