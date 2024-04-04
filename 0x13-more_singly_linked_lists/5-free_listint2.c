@@ -7,24 +7,24 @@
  */
 void free_listint2(listint_t **head)
 {
-	if (head == NULL || *head == NULL)
-	{
-		printf("Freed !\n");
-		return;
-	}
+    listint_t *temp;
+    listint_t *current = *head;
+    int count = 0;
 
-	listint_t *temp;
-	listint_t *current = *head;
-	int count = 0;
+    if (head == NULL || *head == NULL)
+    {
+        printf("Freed !\n");
+        return;
+    }
 
-	while (current != NULL)
-	{
-		temp = current;
-		current = current->next;
-		free(temp);
-		count++;
-	}
+    while (current != NULL)
+    {
+        temp = current;
+        current = current->next;
+        free(temp);
+        count++;
+    }
 
-	*head = NULL; /* Set the head to NULL after freeing the list */
-	printf("-> %d elements\n", count);
+    *head = NULL; /* Set the head to NULL after freeing the list */
+    printf("-> %d elements\n", count);
 }
