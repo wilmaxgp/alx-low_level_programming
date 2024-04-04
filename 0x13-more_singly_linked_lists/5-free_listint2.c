@@ -1,12 +1,11 @@
 #include "lists.h"
-#include <stdio.h> /* Include necessary standard library header */
+#include <stdio.h>
 
 /**
  * free_listint2 - frees a listint_t list and sets the head to NULL
  * @head: pointer to a pointer to the head of the list
  */
-void free_listint2(head)
-listint_t **head;
+void free_listint2(listint_t **head)
 {
 	if (head == NULL || *head == NULL)
 	{
