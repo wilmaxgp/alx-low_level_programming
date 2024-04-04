@@ -29,7 +29,7 @@ size_t print_listint_safe(const listint_t *head)
 		if (slow == fast)
 		{
 			/* Print the looped node */
-			printf("-> [%p] %d\n", (void *)slow, slow->n);
+			printf("[%p] %d\n", (void *)slow, slow->n);
 			return (count + 1);
 		}
 		count++;
