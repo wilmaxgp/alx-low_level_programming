@@ -12,10 +12,12 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	listint_t *current, *temp;
 	unsigned int i;
 
-	if (*head == NULL) /* If the list is empty */
+	/* If the list is empty */
+	if (*head == NULL)
 		return (-1);
 
-	if (index == 0) /* If deleting the head node */
+	/* If deleting the head node */
+	if (index == 0)
 	{
 		temp = *head;
 		*head = (*head)->next;
@@ -27,11 +29,15 @@ int delete_nodeint_at_index(listint_t **head, unsigned int index)
 	for (i = 0; current != NULL && i < index - 1; i++)
 		current = current->next;
 
-	if (current == NULL || current->next == NULL) /* If index is out of range */
+	/* If index is out of range */
+	if (current == NULL || current->next == NULL)
 		return (-1);
 
-	temp = current->next; /* Node to be deleted */
-	current->next = temp->next; /* Link previous node to next of the node to be deleted */
+	/* Node to be deleted */
+	temp = current->next;
+
+	/* Link previous node to next of the node to be deleted */
+	current->next = temp->next;
 	free(temp);
 	return (1);
 }
