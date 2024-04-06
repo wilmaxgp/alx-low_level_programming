@@ -104,7 +104,7 @@ void error_file(int file_from, int file_to, char *argv[])
  * @argv: Array of arguments passed to the program
  *
  * Description: The main function checks for the correct number of arguments
- * and then calls the copy_file function to copy the content of one file to
+ * andthen calls the copy_file function to copy the content of one file to
  * another.
  * If the number of arguments is incorrect, it prints an error message
  * and exits.
