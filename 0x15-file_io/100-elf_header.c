@@ -15,7 +15,8 @@ void error_exit(int err_code, char *msg)
  * print_elf_info - Display ELF header information
  * @header: Pointer to ELF header structure
  */
-void print_elf_info(Elf32_Ehdr *header) {
+void print_elf_info(Elf32_Ehdr *header)
+{
     int i;
     printf("ELF Header:\n");
     printf("  Magic:   ");
