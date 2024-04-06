@@ -10,7 +10,7 @@
  * @fd: File descriptor value (-1 if not applicable)
  *
  * Description: This function prints error messages to the standard error
- * based on the provided error code, error message, file name, 
+ * based on the provided error code, error message, file name,
  * and file descriptor status.
  */
 void print_error(int code, const char *message, const char *file_name, int fd)
@@ -73,7 +73,6 @@ void copy_file(const char *file_from, const char *file_to)
 		print_error(100, "Error: Can't close fd", file_to, fd_to);
 	}
 }
-
 
 /**
  * error_file - Checks if files can be opened and handles errors
