@@ -80,8 +80,9 @@ void copy_file(const char *file_from, const char *file_to)
  * @file_to: File descriptor for destination file
  * @argv: Arguments vector
  *
- * Description: This function checks if files can be opened. If any file cannot be
- * opened, it prints an error message and exits with the respective error code.
+ * Description: This function checks if files can be opened. If any file
+ * cannot be opened, it prints an error message and exits
+ * with the respective error code.
  */
 void error_file(int file_from, int file_to, char *argv[])
 {
@@ -102,11 +103,13 @@ void error_file(int file_from, int file_to, char *argv[])
  * @argc: Number of arguments passed to the program
  * @argv: Array of arguments passed to the program
  *
- * Description: The main function checks for the correct number of arguments and
- * then calls the copy_file function to copy the content of one file to another.
- * If the number of arguments is incorrect, it prints an error message and exits.
- *
- * Return: Upon successful execution, returns 0. Otherwise, returns an error code.
+ * Description: The main function checks for the correct number of arguments
+ * and then calls the copy_file function to copy the content of one file to
+ * another.
+ * If the number of arguments is incorrect, it prints an error message
+ * and exits.
+ * Return: Upon successful execution, returns 0. Otherwise, returns an
+ * error code.
  */
 int main(int argc, char *argv[])
 {
