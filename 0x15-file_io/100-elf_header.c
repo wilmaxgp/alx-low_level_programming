@@ -12,6 +12,31 @@ void error_exit(int err_code, char *msg)
 }
 
 /**
+ * get_osabi_name - Get string representation of OS/ABI value
+ * @osabi: OS/ABI value
+ * Return: String representation of OS/ABI
+ */
+char *get_osabi_name(unsigned char osabi)
+{
+    switch (osabi) {
+        case ELFOSABI_NONE:    return "UNIX - System V";
+        case ELFOSABI_HPUX:    return "UNIX - HP-UX";
+        case ELFOSABI_NETBSD:  return "UNIX - NetBSD";
+        case ELFOSABI_LINUX:   return "UNIX - Linux";
+        case ELFOSABI_SOLARIS: return "UNIX - Solaris";
+        case ELFOSABI_AIX:     return "UNIX - AIX";
+        case ELFOSABI_IRIX:    return "UNIX - IRIX";
+        case ELFOSABI_FREEBSD: return "UNIX - FreeBSD";
+        case ELFOSABI_TRU64:   return "UNIX - TRU64";
+        case ELFOSABI_MODESTO: return "Novell - Modesto";
+        case ELFOSABI_OPENBSD: return "UNIX - OpenBSD";
+        case ELFOSABI_ARM:     return "ARM";
+        case ELFOSABI_STANDALONE: return "Standalone (embedded) application";
+        default:               return "<unknown>";
+    }
+}
+
+/**
  * print_elf_info - Display ELF header information
  * @header: Pointer to ELF header structure
  */
@@ -42,8 +67,12 @@ void print_elf_info(Elf32_Ehdr *header)
         case ELFDATA2MSB: printf("2's complement, big endian\n"); break;
     }
 
-    printf("  Version:                           %d (current)\n", header->e_ident[EI_VERSION]);
-    printf("  OS/ABI:                            %d\n", header->e_ident[EI_OSABI]);
+    printf("  Version:                           %d", header->e_ident[EI_VERSION]);
+    if (header->e_ident[EI_VERSION] == EV_NONE) printf(" (invalid version)\n");
+    else if (header->e_ident[EI_VERSION] == EV_CURRENT) printf(" (current)\n");
+    else printf("\n");
+
+    printf("  OS/ABI:                            %s\n", get_osabi_name(header->e_ident[EI_OSABI]));
     printf("  ABI Version:                       %d\n", header->e_ident[EI_ABIVERSION]);
 
     printf("  Type:                              ");
@@ -57,6 +86,7 @@ void print_elf_info(Elf32_Ehdr *header)
 
     printf("  Entry point address:               0x%x\n", header->e_entry);
 }
+
 /**
  * main - Entry point
  * @argc: Argument count
